@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { render } from "react-dom";
+// import { render } from "react-dom";
 // import InsertItem from "./insert-item.component";
 
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 
-const Items = props => ( <
-    tr >
-    <
-    td > { props.item._id } < /td> <
-    td > { props.item.item } < /td> <
-    td > { props.item.positive } < /td> <
-    td > { props.item.negative } < /td> < /
-    tr >
-)
+const Items = props =>
+    <tr>
+        <td> { props.item._id } </td>
+        <td> { props.item.item } </td>
+        <td> { props.item.positive } </td>
+        <td> { props.item.negative } </td>
+    </tr>
+// )
 
 // class name : this.props
 export default class SentimentOutput extends Component {
-    constructor(props) {
+    constructor(props){
         super(props);
         // console.log(this.props.itemname)
 
@@ -231,72 +230,58 @@ export default class SentimentOutput extends Component {
             }
         };
 
-        const chartsStyle = {
-            display: "flex",
-            margin: "10px"
+        // const chartsStyle = {
+        //     display: "flex",
+        //     margin: "10px"
+        //
+        // }
 
-        }
 
-
-        return ( <
-            div >
-            <
-            br / >
-            <
-            h3 > Analyzed Feedback Report < /h3> <
-            table className = "table" >
-            <
-            thead className = "thead-light" >
-            <
-            tr >
-            <
-            th > ID < /th> <
-            th > Item < /th> <
-            th > Positive < /th> <
-            th > Negative < /th> < /
-            tr > <
-            /thead> <
-            tbody > { this.sentimentDataList() } <
-            /tbody> < /
-            table > <
-            br / >
-            <
-            h4 > Item name: { this.props.name } < /h4> <
-            br / > { /*<InsertItem onSubmit={name => this.onSubmit(name)}/>*/ } <
-            p > Selected Item data: < /p> <
-            p > { JSON.stringify(this.state.selectedItem, null, 2) } < /p> <
-            br / > < br / >
-            <
-            hr / >
-            <
-            HighchartsReact highcharts = { Highcharts }
+        return (
+            <div>
+            <br/>
+            <h3> Analyzed Feedback Report </h3>
+            <table className = "table" >
+                <thead className = "thead-light" >
+                <tr>
+                    <th> ID </th>
+                    <th> Item </th>
+                    <th> Positive </th>
+                    <th> Negative </th>
+                </tr>
+                </thead>
+                <tbody> { this.sentimentDataList() }
+                </tbody>
+            </table >
+            <br/>
+            <h4> Item name: { this.props.name } </h4>
+            <br/> { /*<InsertItem onSubmit={name => this.onSubmit(name)}/>*/ }
+            <p> Selected Item data: </p>
+            <p> { JSON.stringify(this.state.selectedItem, null, 2) } </p>
+            <br/> <br/>
+            <hr/>
+            <HighchartsReact highcharts = { Highcharts }
             options = { itemOptions }
-            /> <
-            br / >
-            <
-            hr / >
-            <
-            div className = "row" >
-            <
-            HighchartsReact className = "col-md-6"
-            highcharts = { Highcharts }
-            options = { batteryOptions }
-            /> <
-            HighchartsReact className = "col-md-6"
-            highcharts = { Highcharts }
-            options = { displayOptions }
-            /> < /
-            div > <
-            hr / >
-            <
-            div className = "row" >
-            <
-            h3 > footer < /h3> < /
-            div >
+            />
+            <br/>
+            <hr/>
+            <div className = "row" >
+                <HighchartsReact className = "col-md-6"
+                highcharts = { Highcharts }
+                options = { batteryOptions }
+                />
+                <HighchartsReact className = "col-md-6"
+                highcharts = { Highcharts }
+                options = { displayOptions }
+                />
+            </div>
+            <hr/>
+            <div className = "row" >
+                <h3> footer </h3>
+            </div>
 
 
-            <
-            /div>
+            </div>
         )
     }
 }
