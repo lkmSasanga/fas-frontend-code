@@ -85,6 +85,7 @@ class InsertItem extends React.Component{
             return <ItemNameOutput name={this.state.itemName}/>
         } else {
             // return <p>Enter 'tv' or 'phone'</p>
+            console.log('Enter valid item')
         }
     }
 

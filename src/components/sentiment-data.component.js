@@ -3,9 +3,20 @@ import React, { Component } from 'react';
 import axios from 'axios';
 // import { render } from "react-dom";
 // import InsertItem from "./insert-item.component";
+import { Link } from 'react-router-dom'
 
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
+
+import "../App.css";
+// import template from "../charts.components/template";
+import Dashboard from "../charts.components/Dashboard.js";
+import dataProcessing, {
+    overallItem,
+    featureOne,
+    featureTwo,
+    featureThree
+} from "../charts.components/dataProcessing";
 
 const Items = props =>
     <tr>
@@ -68,7 +79,8 @@ export default class SentimentOutput extends Component {
             console.log(error);
         })
 
-
+        dataProcessing();
+        this.copyDataSeries();
     }
 
     sentimentDataList() {
@@ -81,6 +93,24 @@ export default class SentimentOutput extends Component {
 
     // highChart() {
     //     return <Highcharts highcharts={Highcharts} options={options}/>
+    // }
+
+
+    // dashboard code
+    // state = template;
+
+    copyDataSeries = (obj = {}) => {
+        this.setState({
+            charts: [
+                { serie: overallItem, title: `Overall ${this.props.name}`},
+                { serie: featureOne, title: `I phone 7 :Battery` },
+                { serie: featureTwo, title: `I phone 7: Display` },
+                { serie: featureThree, title: `Gender` }
+            ]
+        });
+    };
+    // componentDidMount() {
+    //
     // }
 
 
@@ -140,95 +170,95 @@ export default class SentimentOutput extends Component {
             }
         };
 
-        const batteryOptions = {
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: "pie"
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-                    },
-                    colors: [
-                        '#FFC154',
-                        '#4D3683'
-                    ]
-                }
-            },
-            series: [{
-                name: 'Sentiment',
-                colorByPoint: true,
-                data: [{
-                        name: 'Positive',
-                        y: 44
-                    },
-                    {
-                        name: 'Negative',
-                        y: 56
-                    }
-                ]
-            }],
-            title: {
-                text: `Sentiment Analyzed data of ${this.props.name}`
-            }
-        };
+        // const batteryOptions = {
+        //     chart: {
+        //         plotBackgroundColor: null,
+        //         plotBorderWidth: null,
+        //         plotShadow: false,
+        //         type: "pie"
+        //     },
+        //     tooltip: {
+        //         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        //     },
+        //     plotOptions: {
+        //         pie: {
+        //             allowPointSelect: true,
+        //             cursor: 'pointer',
+        //             dataLabels: {
+        //                 enabled: true,
+        //                 format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+        //             },
+        //             colors: [
+        //                 '#FFC154',
+        //                 '#4D3683'
+        //             ]
+        //         }
+        //     },
+        //     series: [{
+        //         name: 'Sentiment',
+        //         colorByPoint: true,
+        //         data: [{
+        //                 name: 'Positive',
+        //                 y: 44
+        //             },
+        //             {
+        //                 name: 'Negative',
+        //                 y: 56
+        //             }
+        //         ]
+        //     }],
+        //     title: {
+        //         text: `Sentiment Analyzed data of ${this.props.name}`
+        //     }
+        // };
 
-        const displayOptions = {
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: "pie",
-            },
-            credits: {
-                enabled: false
-            },
-            exporting: {
-                enabled: false
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-                    },
-                    colors: [
-                        '#830A68',
-                        '#238B6D'
-                    ]
-                }
-            },
-            series: [{
-                name: 'Sentiment',
-                colorByPoint: true,
-                data: [{
-                        name: 'Positive',
-                        y: 56
-                    },
-                    {
-                        name: 'Negative',
-                        y: 44
-                    }
-                ]
-            }],
-            title: {
-                text: `Sentiment Analyzed data of ${this.props.name}`
-            }
-        };
+        // const displayOptions = {
+        //     chart: {
+        //         plotBackgroundColor: null,
+        //         plotBorderWidth: null,
+        //         plotShadow: false,
+        //         type: "pie",
+        //     },
+        //     credits: {
+        //         enabled: false
+        //     },
+        //     exporting: {
+        //         enabled: false
+        //     },
+        //     tooltip: {
+        //         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        //     },
+        //     plotOptions: {
+        //         pie: {
+        //             allowPointSelect: true,
+        //             cursor: 'pointer',
+        //             dataLabels: {
+        //                 enabled: true,
+        //                 format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+        //             },
+        //             colors: [
+        //                 '#830A68',
+        //                 '#238B6D'
+        //             ]
+        //         }
+        //     },
+        //     series: [{
+        //         name: 'Sentiment',
+        //         colorByPoint: true,
+        //         data: [{
+        //                 name: 'Positive',
+        //                 y: 56
+        //             },
+        //             {
+        //                 name: 'Negative',
+        //                 y: 44
+        //             }
+        //         ]
+        //     }],
+        //     title: {
+        //         text: `Sentiment Analyzed data of ${this.props.name}`
+        //     }
+        // };
 
         // const chartsStyle = {
         //     display: "flex",
@@ -250,8 +280,7 @@ export default class SentimentOutput extends Component {
                     <th> Negative </th>
                 </tr>
                 </thead>
-                <tbody> { this.sentimentDataList() }
-                </tbody>
+                <tbody>{ this.sentimentDataList() }</tbody>
             </table >
             <br/>
             <h4> Item name: { this.props.name } </h4>
@@ -268,14 +297,34 @@ export default class SentimentOutput extends Component {
             <div className = "row" >
                 <HighchartsReact className = "col-md-6"
                 highcharts = { Highcharts }
-                options = { batteryOptions }
+                // options = { batteryOptions }
                 />
                 <HighchartsReact className = "col-md-6"
-                highcharts = { Highcharts }
-                options = { displayOptions }
+                // highcharts = { Highcharts }
+                // options = { displayOptions }
                 />
             </div>
             <hr/>
+                {/*<Link*/}
+                {/*    to={{*/}
+                {/*        pathname: ".",*/}
+                {/*        data: data // your data array of objects*/}
+                {/*    }}*/}
+                {/*/>*/}
+
+
+                <div className="container bg-light">
+                    <h1 className="text-center mt-5">Feedback Analysis System</h1>
+                    <p className="text-center">Ebay</p>
+                </div>
+                <div className="container  mb-5 pb-3 bg-light">
+                    <Dashboard
+                        // userConfig={this.state.userConfig}
+                        charts={this.state.charts}
+                    />
+                </div>
+
+
             <div className = "row" >
                 <h3> footer </h3>
             </div>
